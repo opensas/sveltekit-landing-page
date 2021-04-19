@@ -6,21 +6,15 @@ Based on the [Landing Page](https://www.tailwindtoolbox.com/templates/landing-pa
 
 ## Running locally
 
-Clone the repo
+Clone the repo, install dependencies and start the development server:
 
 ```sh
-git clone xxxx
-```
+git clone git@github.com:opensas/sveltekit-landing-page.git
 
-Install dependencies
+cd sveltekit-landing-page
 
-```sh
 pnpm install
-```
 
-ANd start the application in development mode
-
-```sh
 pnpm dev
 ```
 
