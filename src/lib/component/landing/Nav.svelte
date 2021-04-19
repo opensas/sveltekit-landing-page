@@ -1,30 +1,21 @@
 <script lang="ts">
-  import Button from './components/Button.svelte';
+  import { clickOutside, clickOutsideAction } from '$lib/actions/clickOutside'
+  import Button from './components/Button.svelte'
 
-  let y: number;
-  let navFloat = false;
-  $: navFloat = y > 10;
+  let y: number
+  let navFloat = false
+  $: navFloat = y > 10
 
-  let showMenu = false;
-  const toggleMenu = () => (showMenu = !showMenu);
-  let hambugerEl;
+  let showMenu = false
+  const toggleMenu = () => (showMenu = !showMenu)
+  let hambugerEl
 
-  const clickOutside = (node, onEventFunction) => {
-    const handleClick = (event) => {
-      if (!node.contains(event.target)) onEventFunction(event);
-    };
-
-    document.addEventListener('click', handleClick);
-
-    return {
-      destroy() {
-        document.removeEventListener('click', handleClick);
-      }
-    };
-  };
-  const onClickOutside = ({ target }) => {
-    if (!hambugerEl.contains(target)) showMenu = false;
-  };
+  const onClickOutsideAction = ({ target }) => {
+    if (!hambugerEl.contains(target)) showMenu = false
+  }
+  const onClickOutside = ({ detail: { event: { target } } }) => {
+    if (!hambugerEl.contains(target)) showMenu = false
+  }
 </script>
 
 <svelte:window bind:scrollY={y} />
@@ -79,8 +70,10 @@
         </svg>
       </button>
     </div>
+    <!-- use:clickOutsideAction={onClickOutsideAction} -->
+    <!-- use:clickOutside on:clickOutside={onClickOutside} -->
     <div
-      use:clickOutside={onClickOutside}
+      use:clickOutside on:clickOutside={onClickOutside}
       class:hidden={!showMenu}
       class="hidden w-full flex-grow lg:flex lg:items-center lg:w-auto mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20"
       id="nav-content"
