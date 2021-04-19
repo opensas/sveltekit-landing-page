@@ -4,6 +4,30 @@ Based on the [Landing Page](https://www.tailwindtoolbox.com/templates/landing-pa
 
 ![Landing Page](https://www.tailwindtoolbox.com/templates/landing-page.png)
 
+The site is automatically deployed to [vercel](https://vercel.com) using the [SvelteKit vercel adapter](https://github.com/sveltejs/kit/tree/master/packages/adapter-vercel). Check the [documentation](https://kit.svelte.dev/docs#adapters) for other adapters. 
+
+## Deploying to vercel
+
+Add `"@sveltejs/adapter-vercel"`: `"next"` to the devDependencies in your `package.json` and run `npm install`.
+
+```shell
+pnpm install -D @sveltejs/adapter-vercel
+```
+
+Then modify your svelte.config.js:
+
+```javascript
+const vercel = require('@sveltejs/adapter-vercel');
+...
+
+module.exports = {
+  kit: {
+    ...
+    adapter: vercel()
+  }
+};
+```
+
 ## Running locally
 
 Clone the repo, install dependencies and start the development server:
